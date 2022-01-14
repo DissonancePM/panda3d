@@ -136,7 +136,7 @@ function(install_python_package package_name)
   if(NOT DEFINED src_path AND type STREQUAL "ARCH" AND WIN32 AND NOT CYGWIN)
     # Win32 needs a special fixup so the DLLs in "bin" can be on the path;
     # let's set src_path to the directory containing our fixup __init__.py
-    set(src_path "${CMAKE_SOURCE_DIR}/cmake/templates/win32_python")
+    set(src_path "${PROJECT_SOURCE_DIR}/cmake/templates/win32_python")
   endif()
 
   set(path "${PANDA_OUTPUT_DIR}/${package_name}")
@@ -151,7 +151,7 @@ function(install_python_package package_name)
   add_custom_target(${package_name} ALL
     COMMAND ${CMAKE_COMMAND}
       ${args}
-      -P "${CMAKE_SOURCE_DIR}/cmake/scripts/CopyPython.cmake")
+      -P "${PROJECT_SOURCE_DIR}/cmake/scripts/CopyPython.cmake")
 
   set(dir "${PYTHON_${type}_INSTALL_DIR}")
   if(dir)
